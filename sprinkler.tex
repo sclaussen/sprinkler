@@ -1,0 +1,220 @@
+\documentclass{book}
+\usepackage[utf8]{inputenc}       % use utf8 charset
+\usepackage{titlesec}             % allows customization of chapter/section titles
+\usepackage{array}                % use arrays
+\usepackage{hyperref}             % hyperlinks
+\usepackage{tikz}                 % drawing diagrams
+\usepackage{tkz-euclide}          % drawing diagrams
+\usepackage{graphicx}             % allows jpg/etc to be included
+\usepackage{amssymb}              % additional mathematical symbols
+\usepackage{amsmath}              % additional mathematical symbols
+\usepackage[T1]{fontenc}          % allows special character encoding symbols
+\usepackage{ifthen}               % enable if/then command
+\usepackage{gensymb}              % added to support \degree
+\usepackage{wasysym}
+\usepackage{pgfplots}
+\usetikzlibrary{arrows.meta}
+\pgfplotsset{compat=1.18}
+\usepackage{geometry}
+
+\geometry{left=0.1in, right=0.1in}
+
+\newcommand{\frontSideFlowerbed}[0] {
+  \tkzDefPoints{0/28/F1, 0/88/F2, 40/88/F3, 40/28/F4}
+  \tkzDrawPolygon[line width=.1](F1,F2,F3,F4)
+}
+
+\newcommand{\frontSideYard}[0] {
+  \tkzDefPoints{0/88/Y1, 0/174.5/Y2}
+  \tkzDrawSegment[line width=.1](Y1,Y2)
+}
+
+\newcommand{\frontSideDriveway}[0] {
+  \tkzDefPoints{0/174.5/D1, 74/174.5/D2, 88/150.5/D3, 88/68/D4}
+  \tkzDrawSegments[line width=1.5](D1,D2 D2,D3 D3,D4)
+}
+
+\newcommand{\frontSideHouse}[0] {
+  \tkzDefPoints{70.5/28/H1, 70.5/68/H2, 89.5/68/H3}
+  \tkzDrawSegments[line width=5](H1,H2 H2,H3)
+}
+
+\newcommand{\frontSideSidewalk}[0] {
+  \tkzDefPoints{88/94/SW1, 40/94/SW2, 40/28/SW3}
+  \tkzDrawSegments[line width=.1](SW1,SW2 SW2,SW3)
+
+  \tkzDefPoints{88/74.5/SW4, 64/74.5/SW5, 64/28/SW6}
+  \tkzDrawSegments[line width=.1](SW4,SW5 SW5,SW6)
+}
+
+\newcommand{\frontSideFence}[0] {
+  \tkzDefPoints{0/28/FN1, 70.5/28/FN2}
+  \tkzDrawSegments[line width=2](FN1,FN2)
+}
+
+\newcommand{\frontSideSprinklers}[0] {
+  \tkzDefPoint(84.5,71.5){G2S8} \tkzLabelPoint[left](G2S8){$8$} \tkzDrawPoint[red, size=5](G2S8)
+  \tkzDefPoint(86,96){G2S9} \tkzLabelPoint[above left](G2S9){$9$} \tkzDrawPoint[red, size=5](G2S9)
+  \tkzDefPoint(72,172.5){G2S10} \tkzLabelPoint[below left](G2S10){$10$} \tkzDrawPoint[red, size=5](G2S10)
+  \tkzDefPoint(2,172.5){G2S11} \tkzLabelPoint[below right](G2S11){$11$} \tkzDrawPoint[red, size=5](G2S11)
+  \tkzDefPoint(2,90){G2S12} \tkzLabelPoint[above right](G2S12){$12$} \tkzDrawPoint[red, size=5](G2S12)
+
+  \tkzDefPoint(6,82){G31} \tkzLabelPoint[below right](G31){$1$} \tkzDrawPoint[cyan, size=5](G31)
+  \tkzDefPoint(20,32){G32} \tkzLabelPoint[above right](G32){$2$} \tkzDrawPoint[cyan, size=5](G32)
+  \tkzDefPoint(66.5,32){G33} \tkzLabelPoint[above](G33){$3$} \tkzDrawPoint[cyan, size=5](G33)
+}
+
+\newcommand{\frontPorch}[0] {
+  \tkzDefPoints{116/0/A, 156/0/B, 156/20/C, 116/20/D}
+  \tkzDrawPolygon(A,B,C,D)
+}
+
+\newcommand{\frontSidewalk}[0] {
+  \tkzDefPoints{128/20/E, 152/20/F, 152/101/G, 100/101/H, 100/77/I, 128/77/J}
+  \tkzDrawPolygon(E,F,G,H,I,J)
+}
+
+\newcommand{\frontFlowerbed}[0] {
+  \tkzDefPoints{152/20/FB1, 161/20/FB2, 161/101/FB3, 152/101/FB4}
+  \tkzDrawPolygon[line width=.5](FB1,FB2,FB3, FB4)
+}
+
+\newcommand{\frontHouse}[0] {
+  \tkzDefPoints{98/68/H1, 116/68/H2, 116/0/H3, 181/0/H4, 189.5/10/H5, 219.5/10/H6, 228/0/H7, 242.5/0/H8, 242.5/-10/H9}
+  \tkzDrawSegments[line width=5](H1,H2 H2,H3 H3,H4 H4,H5 H5,H6 H6,H7 H7,H8 H8,H9)
+}
+
+\newcommand{\frontDriveway}[0] {
+  \tkzDefPoints{100/68/DW1, 100/150.5/DW2, 110/174.5/DW3, 166/174.5/DW4, 232.5/174.5/DW5, 292/174.5/DW6, 292/-10/DW7}
+  \tkzDrawSegments[line width=1.5](DW1,DW2 DW2,DW3)
+  \tkzDrawSegments[line width=1.5](DW3,DW4 DW4,DW5 DW5,DW6 DW6,DW7)
+}
+
+\newcommand{\frontSprinklers}[0] {
+  \tkzDefPoint(109,73){G1S1} \tkzLabelPoint[right](G1S1){$1$} \tkzDrawPoint[blue, size=5](G1S1)
+  \tkzDefPoint(122,65){G1S2} \tkzLabelPoint[above right](G1S2){$2$} \tkzDrawPoint[blue, size=5](G1S2)
+  \tkzDefPoint(154,99){G1S3} \tkzLabelPoint[below right](G1S3){$3$} \tkzDrawPoint[blue, size=5](G1S3)
+  \tkzDefPoint(164,56){G1S4} \tkzLabelPoint[above right](G1S4){$4$} \tkzDrawPoint[blue, size=5](G1S4)
+  \tkzDefPoint(154,22){G1S5} \tkzLabelPoint[above right](G1S5){$5$} \tkzDrawPoint[blue, size=5](G1S5)
+  \tkzDefPoint(165.5,9.5){G1S6} \tkzLabelPoint[above right](G1S6){$6$} \tkzDrawPoint[blue, size=5](G1S6)
+  \tkzDefPoint(217.5,99){G2S7} \tkzLabelPoint[above right](G2S7){$7$} \tkzDrawPoint[blue, size=5](G2S7)
+
+  \tkzDefPoint(224,68){G2S8} \tkzLabelPoint[above right](G2S8){$8$} \tkzDrawPoint[blue, size=5](G2S8)
+
+  \tkzDefPoint(259.5,99){G1S9} \tkzLabelPoint[above right](G1S9){$9$} \tkzDrawPoint[blue, size=5](G1S9)
+  \tkzDefPoint(259.5,54){G1S10} \tkzLabelPoint[above right](G1S10){$10$} \tkzDrawPoint[blue, size=5](G1S10)
+  \tkzDefPoint(242.5,18){G1S11} \tkzLabelPoint[above right](G1S11){$11$} \tkzDrawPoint[blue, size=5](G1S11)
+  \tkzDefPoint(289.5,-6){G2S12} \tkzLabelPoint[above left](G2S12){$12$} \tkzDrawPoint[blue, size=5](G2S12)
+
+  \tkzDefPoint(150,103.5){G2S1} \tkzLabelPoint[above right](G2S1){$1$} \tkzDrawPoint[red, size=5](G2S1)
+  \tkzDefPoint(102.5,103.5){G2S2} \tkzLabelPoint[above right](G2S2){$2$} \tkzDrawPoint[red, size=5](G2S2)
+  \tkzDefPoint(111.5,172.5){G2S3} \tkzLabelPoint[below right](G2S3){$3$} \tkzDrawPoint[red, size=5](G2S3)
+  \tkzDefPoint(166,172.5){G2S4} \tkzLabelPoint[below right](G2S4){$4$} \tkzDrawPoint[red, size=5](G2S4)
+  \tkzDefPoint(232.5,172.5){G2S5} \tkzLabelPoint[below right](G2S5){$5$} \tkzDrawPoint[red, size=5](G2S5)
+  \tkzDefPoint(289.5,172.5){G2S6} \tkzLabelPoint[below left](G2S6){$6$} \tkzDrawPoint[red, size=5](G2S6)
+  \tkzDefPoint(289.5,77){G2S7} \tkzLabelPoint[below left](G2S7){$7$} \tkzDrawPoint[red, size=5](G2S7)
+}
+
+\newcommand{\backSideHouse}[0] {
+  \tkzDefPoints{27/0/H1, 27/82/H2, 27/100/H3, 27/124/H4, 0/124/H5, 0/148/H6, 0/184/H7, 0/208/H8, 22/225/H9, 22/500/H10}
+  \tkzDrawSegments[line width=5](H1,H2 H3,H4 H4,H5 H5,H6 H7,H8 H8,H9 H9,H10)
+
+  % Garage door and sliding glass door
+  \tkzDrawSegments[line width=1](H2,H3 H6,H7)
+
+  % Patio outside garage door
+  \tkzDefPoints{27/82/H10, 45/82/H11, 45/100/H12, 27/100/H13}
+  \tkzDrawPolygon(H10,H11,H12,H13)
+
+  % Air conditioner
+  \tkzDefPoints{45/64/H14, 27/64/H15}
+  \tkzDrawPolygon(H10,H11,H14,H15)
+
+  % Patio outside sliding glass door
+  \tkzDefPoints{6/148/H16, 6/184/H17}
+  \tkzDrawPolygon[line width=.1](H6,H7,H17,H16)
+}
+
+\newcommand{\backSideFence}[0] {
+  \tkzDefPoints{27/0/F1, 36/0/F2, 54/0/F3, 96/0/F4, 96/230/F5, 96/500/F6, 22/500/F7}
+  \tkzDrawSegments[line width=2](F1,F2)
+  \tkzDrawSegments[line width=.1](F2,F3)
+  \tkzDrawSegments[line width=2](F3,F4 F4,F5 F5,F6 F6,F7)
+}
+
+\newcommand{\backSideTrash}[0] {
+  \tkzDefPoints{54/0/T1, 54/18/T2, 78/18/T3, 78/36/T4, 96/36/T5}
+  \tkzDrawSegments[line width=.1](T1,T2 T2,T3 T3,T4 T4,T5)
+}
+
+\newcommand{\backSidePlantarea}[0] {
+  \tkzDefPoints{78/36/P1, 78/500/P2, 36/0/P3, 36/64/P4, 45/82/P5, 45/148/P6, 0/148/P7, 6/184/P8, 37/225/P9, 37/417/P10, 22/417/P11}
+
+  % Plant area up fence
+  \tkzDrawSegments[line width=.1](P1,P2)
+
+  % Plant area from gate to air conditioner
+  \tkzDrawSegments[line width=.1](P3,P4)
+
+  % Plant area from garage door to sliding glass door
+  \tkzDrawSegments[line width=.1](P5,P6 P6,P7)
+
+  % Plant area on opposite side of sliding glass door
+  \tkzDrawSegments[line width=.1](P8,P9 P9,P10 P10,P11)
+}
+
+\newcommand{\backSideSprinklers}[0] {
+  \tkzDefPoint(38.5,62){G4S1} \tkzLabelPoint[below right](G4S1){$1$} \tkzDrawPoint[blue, size=5](G4S1)
+  \tkzDefPoint(7.5,149.5){G4S2} \tkzLabelPoint[above right](G4S2){$2$} \tkzDrawPoint[blue, size=5](G4S2)
+  \tkzDefPoint(5,185.5){G4S3} \tkzLabelPoint[below right](G4S3){$3$} \tkzDrawPoint[blue, size=5](G4S3)
+  \tkzDefPoint(33,269){G4S4} \tkzLabelPoint[above left](G4S4){$4$} \tkzDrawPoint[blue, size=5](G4S4)
+  \tkzDefPoint(33,385){G4S5} \tkzLabelPoint[above left](G4S5){$5$} \tkzDrawPoint[blue, size=5](G4S5)
+  \tkzDefPoint(26,496){G4S6} \tkzLabelPoint[below right](G4S6){$6$} \tkzDrawPoint[blue, size=5](G4S6)
+  \tkzDefPoint(55,496){G4S7} \tkzLabelPoint[below right](G4S7){$7$} \tkzDrawPoint[blue, size=5](G4S7)
+  \tkzDefPoint(76.5,370){G4S8} \tkzLabelPoint[above left](G4S8){$8$} \tkzDrawPoint[blue, size=5](G4S8)
+  \tkzDefPoint(76.5,172.5){G4S9} \tkzLabelPoint[above left](G4S9){$9$} \tkzDrawPoint[blue, size=5](G4S9)
+  \tkzDefPoint(76.5,106.5){G4S10} \tkzLabelPoint[above left](G4S10){$10$} \tkzDrawPoint[blue, size=5](G4S10)
+
+  \tkzDefPoint(43,102){G5S2} \tkzLabelPoint[above left](G5S2){$2$} \tkzDrawPoint[red, size=5](G5S2)
+  \tkzDefPoint(82.5,58){G5S1} \tkzLabelPoint[above right](G5S1){$1$} \tkzDrawPoint[red, size=5](G5S1)
+  \tkzDefPoint(82.5,119){G5S3} \tkzLabelPoint[above left](G5S3){$3$} \tkzDrawPoint[red, size=5](G5S3)
+  \tkzDefPoint(82.5,184.5){G5S4} \tkzLabelPoint[above left](G5S4){$4$} \tkzDrawPoint[red, size=5](G5S4)
+}
+
+
+
+\begin{document}
+
+\begin{tikzpicture}[scale=.05]
+
+  \frontSideFlowerbed
+  \frontSideYard
+  \frontSideDriveway
+  \frontSideHouse
+  \frontSideSidewalk
+  \frontSideFence
+  \frontSideSprinklers
+
+  \frontHouse
+  \frontDriveway
+  \frontPorch
+  \frontSidewalk
+  \frontFlowerbed
+  \frontSprinklers
+
+% \end{tikzpicture}
+% \begin{tikzpicture}[scale=.05]
+
+\end{tikzpicture}
+
+\begin{tikzpicture}[scale=.05]
+
+  \backSideHouse
+  \backSideFence
+  \backSideTrash
+  \backSidePlantarea
+  \backSideSprinklers
+
+\end{tikzpicture}
+
+\end{document}
